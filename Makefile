@@ -22,5 +22,11 @@ migrate:
 migrate-rollback:
 	docker-compose run --rm dev-symfony-php-cli bin/console doctrine:migrations:migrate prev --no-interaction
 
+docker-assets-install:
+	docker-compose run --rm dev-symfony-node yarn install
+
+docker-assets-dev:
+	docker-compose run --rm dev-symfony-node yarn run dev
+
 test-unit:
 	docker-compose run --rm dev-symfony-php-cli php vendor/bin/codecept run unit
