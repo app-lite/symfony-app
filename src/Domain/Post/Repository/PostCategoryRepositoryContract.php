@@ -12,6 +12,10 @@ interface PostCategoryRepositoryContract
 
     public function getById(string $id): PostCategory;
 
+    public function hasById(string $id): bool;
+
+    public function hasByTitle(string $title): bool;
+
     public function getListByIdList(array $idList): array;
 
     public function getList(): array;

@@ -14,23 +14,19 @@ class PostCategoryFetcher
     {
     }
 
-    public function findById(string $id): ?PostCategory
-    {
-        return $this->postCategoryRepository->findById($id);
-    }
-
     public function getById(string $id): PostCategory
     {
         return $this->postCategoryRepository->getById($id);
     }
 
-    /**
-     * @return PostCategory[]
-     */
-    public function getListByIdList(array $idList): array
+    public function hasById(string $id): bool
     {
-        $criteria = PostCategoryCriteria::create();
-        return $this->postCategoryRepository->getListByIdList($idList);
+        return $this->postCategoryRepository->hasById($id);
+    }
+
+    public function hasByTitle(string $title): bool
+    {
+        return $this->postCategoryRepository->hasByTitle($title);
     }
 
     /**
