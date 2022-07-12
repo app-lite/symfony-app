@@ -9,3 +9,6 @@ docker-down-clear:
 
 docker-build:
 	docker-compose build
+
+test-unit:
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/codecept run unit
