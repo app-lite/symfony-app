@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Infrastructure\Domain\Post\Proxy\Symfony\PostProxy" table="post_posts">
+        <id name="id" type="guid" />
+        <many-to-one field="postCategory"
+                     target-entity="App\Infrastructure\Domain\Post\Proxy\Symfony\PostCategoryProxy"
+                     inversed-by="postList">
+            <join-column name="category_id" nullable="false" on-delete="CASCADE" />
+        </many-to-one>
+        <indexes>
+            <index name="post_posts_category_id_index" columns="category_id" />
+        </indexes>
+        <field name="title" />
+        <field name="text" type="text" nullable="true" />
+        <field name="createdAt" column="created_at" nullable="true" type="datetime_immutable" />
+        <field name="updatedAt" column="updated_at" nullable="true" type="datetime_immutable" />
+        <field name="deletedAt" column="deleted_at" nullable="true" type="datetime_immutable" />
+    </entity>
+</doctrine-mapping>

@@ -10,6 +10,9 @@ docker-down-clear:
 docker-build:
 	docker-compose build
 
+schema-validate:
+	docker-compose run --rm dev-symfony-php-cli bin/console doctrine:schema:validate
+
 migrate-generate:
 	docker-compose run --rm dev-symfony-php-cli bin/console doctrine:migrations:generate --no-interaction
 
