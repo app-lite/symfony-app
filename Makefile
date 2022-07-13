@@ -1,5 +1,5 @@
 up: docker-up
-init: docker-build docker-up
+init: docker-down-clear docker-build docker-up docker-composer-install env-generate docker-migrate docker-fixtures docker-assets-install docker-assets-dev
 
 docker-up:
 	docker-compose up -d
@@ -10,13 +10,19 @@ docker-down-clear:
 docker-build:
 	docker-compose build
 
+env-generate:
+	cp .env .env.local
+
+docker-composer-install:
+	docker-compose run --rm dev-symfony-php-cli composer install
+
 schema-validate:
 	docker-compose run --rm dev-symfony-php-cli bin/console doctrine:schema:validate
 
 migrate-generate:
 	docker-compose run --rm dev-symfony-php-cli bin/console doctrine:migrations:generate --no-interaction
 
-migrate:
+docker-migrate:
 	docker-compose run --rm dev-symfony-php-cli bin/console doctrine:migrations:migrate --no-interaction
 
 migrate-rollback:
