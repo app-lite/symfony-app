@@ -22,6 +22,9 @@ migrate:
 migrate-rollback:
 	docker-compose run --rm dev-symfony-php-cli bin/console doctrine:migrations:migrate prev --no-interaction
 
+docker-fixtures:
+	docker-compose run --rm dev-symfony-php-cli php bin/console doctrine:fixtures:load --no-interaction
+
 docker-assets-install:
 	docker-compose run --rm dev-symfony-node yarn install
 
