@@ -1,0 +1,6 @@
+parameters:
+    app.env: '%env(APP_ENV)%'
+
+services:
+    _defaults:
+        autowire: true

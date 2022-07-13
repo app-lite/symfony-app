@@ -29,4 +29,10 @@ docker-assets-dev:
 	docker-compose run --rm dev-symfony-node yarn run dev
 
 test-unit:
-	docker-compose run --rm dev-symfony-php-cli php vendor/bin/codecept run unit
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/codecept run unitz
+
+test-acceptance:
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/codecept run acceptance
+
+test:
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/codecept run

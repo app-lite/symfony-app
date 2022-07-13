@@ -1,6 +1,11 @@
 <?php
 namespace App\Tests;
 
+use App\Domain\Post\Constant\PostCategoryEnum;
+use App\Domain\Post\Constant\PostEnum;
+use App\Tests\_generated\AcceptanceTesterActions;
+use Codeception\Actor;
+
 /**
  * Inherited Methods
  * @method void wantToTest($text)
@@ -16,11 +21,43 @@ namespace App\Tests;
  *
  * @SuppressWarnings(PHPMD)
 */
-class AcceptanceTester extends \Codeception\Actor
+class AcceptanceTester extends Actor
 {
-    use _generated\AcceptanceTesterActions;
+    use AcceptanceTesterActions;
 
-   /**
-    * Define custom actions here
-    */
+    public function havePostCategoryAndPostInDatabase(): void
+    {
+        $dateTime = (new \DateTimeImmutable())->format('Y-m-d H:i:s');
+        $postCategoryData1 = [
+            'id' => '00000000-0000-0000-0000-000000000001',
+            'title' => 'Category 1',
+            'description' => 'Description 1',
+            'created_at' => $dateTime,
+            'updated_at' => $dateTime,
+        ];
+        $this->haveInDatabase(PostCategoryEnum::DB_TABLE, $postCategoryData1);
+
+        $post = [
+            'id' => '00000000-0000-0000-0000-000000000001',
+            'category_id' => $postCategoryData1['id'],
+            'title' => 'Post 1',
+            'text' => 'Message 1',
+            'created_at' => $dateTime,
+            'updated_at' => $dateTime,
+        ];
+        $this->haveInDatabase(PostEnum::DB_TABLE, $post);
+    }
+
+    public function havePostCategoryInDatabase(): void
+    {
+        $dateTime = (new \DateTimeImmutable())->format('Y-m-d H:i:s');
+        $postCategoryData1 = [
+            'id' => '00000000-0000-0000-0000-000000000001',
+            'title' => 'Category 1',
+            'description' => 'Description 1',
+            'created_at' => $dateTime,
+            'updated_at' => $dateTime,
+        ];
+        $this->haveInDatabase(PostCategoryEnum::DB_TABLE, $postCategoryData1);
+    }
 }

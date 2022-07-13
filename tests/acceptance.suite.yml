@@ -7,6 +7,24 @@
 actor: AcceptanceTester
 modules:
     enabled:
-        - PhpBrowser:
-            url: http://localhost:8000
+        - Symfony:
+              app_path: 'src'
+              environment: 'test'
+              var_path: 'var'
+              url: http://dev-symfony-nginx
+        - REST:
+              depends: Symfony
         - \App\Tests\Helper\Acceptance
+        - Cli
+        - Db
+    config:
+        Db:
+            dsn: 'pgsql:host=test-symfony-postgres;port=5432;dbname=app_test'
+            user: 'app'
+            password: 'secret'
+            cleanup: true
+            populate: false
+
+extensions:
+    enabled:
+        - Tests\Extensions\DatabaseMigrationExtension
