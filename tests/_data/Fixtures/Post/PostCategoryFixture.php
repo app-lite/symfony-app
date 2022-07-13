@@ -1,6 +1,8 @@
 <?php
 
-namespace App\DataFixtures;
+declare(strict_types=1);
+
+namespace Tests\_data\Fixtures\Post;
 
 use App\Infrastructure\Domain\Post\Proxy\Symfony\PostCategoryProxy;
 use App\Infrastructure\Domain\Post\Proxy\Symfony\PostProxy;
@@ -9,7 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class AppFixtures extends Fixture
+class PostCategoryFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
