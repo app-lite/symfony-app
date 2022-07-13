@@ -1,3 +1,2 @@
-controllers:
-    resource: ../src/Controller/
-    type: attribute
+app.web.controllers:
+  resource: ./routes/web/routes.yaml

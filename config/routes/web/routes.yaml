@@ -1,0 +1,35 @@
+web.index:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+    defaults:
+        path: /post
+
+web.post.index:
+    path: /post
+    defaults:
+        _controller: App\UI\Http\Web\Controller\Symfony\Shared\Post\PostController::index
+    methods: GET
+
+web.post.create:
+    path: /post/create
+    defaults:
+        _controller: App\UI\Http\Web\Controller\Symfony\Shared\Post\PostController::create
+    methods: GET
+
+web.post.store:
+    path: /post/store
+    defaults:
+        _controller: App\UI\Http\Web\Controller\Symfony\Shared\Post\PostController::store
+    methods: POST
+
+web.post.category.create:
+    path: /post/category/create
+    defaults:
+        _controller: App\UI\Http\Web\Controller\Symfony\Shared\Post\PostCategoryController::create
+    methods: GET
+
+web.post.category.store:
+    path: /post/category/store
+    defaults:
+        _controller: App\UI\Http\Web\Controller\Symfony\Shared\Post\PostCategoryController::store
+    methods: POST

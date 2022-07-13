@@ -1,0 +1,54 @@
+{% extends 'layouts/app/layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="my-5">
+
+            {% set errors = app.flashes('errors')|first %}
+            {% set old = app.flashes('old')|first %}
+
+            <div class="text-end mb-3">
+                <a href="{{ path('web.post.index') }}" class="btn btn-link">Home</a>
+                <a href="{{ path('web.post.category.create') }}" class="btn btn-outline-primary">Add category</a>
+                <a href="{{ path('web.post.create') }}" class="btn btn-success">Add post</a>
+            </div>
+
+            <form action="{{ path('web.post.category.store') }}" method="post" class="mt-5 mx-auto w-50">
+                {% if errors.token is defined %}
+                    {% for error in errors.token %}
+                        <span class="invalid-feedback mb-3" style="display: block">{{ error.message }}</span>
+                    {% endfor %}
+                {% endif %}
+
+                <input type="hidden" name="token" value="{{ csrf_token('create') }}" />
+
+                <div class="mb-3">
+                    <label for="title" class="form-label fw-bold">Title</label>
+                    <input type="text" name="title" class="form-control{{ errors.title is defined ? ' is-invalid' : '' }}" id="title" value="{{ old.title ?? '' }}">
+                    {% if errors.title is defined %}
+                        {% for error in errors.title %}
+                            <span class="invalid-feedback">{{ error.message }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="description" class="form-control{{ errors.description is defined ? ' is-invalid' : '' }}" id="description" rows="3">{{ old.description ?? '' }}</textarea>
+                    {% if errors.description is defined %}
+                        {% for error in errors.description %}
+                            <span class="invalid-feedback">{{ error.message }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Create</button>
+            </form>
+
+        </div>
+
+    </div>
+
+{% endblock %}

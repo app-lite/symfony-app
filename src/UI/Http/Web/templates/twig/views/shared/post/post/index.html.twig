@@ -1,0 +1,28 @@
+{% extends 'layouts/app/layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="my-5">
+
+            <div class="text-end mb-3">
+                <a href="{{ path('web.post.index') }}" class="btn btn-link">Home</a>
+                <a href="{{ path('web.post.category.create') }}" class="btn btn-primary">Add category</a>
+                <a href="{{ path('web.post.create') }}" class="btn btn-success">Add post</a>
+            </div>
+
+            {% for postCategory in postCategoryList %}
+                <h3>{{ postCategory.title|e }}</h3>
+                {% if postCategory.id in postListGroupByCategoryId|keys %}
+                    {% for post in postListGroupByCategoryId[postCategory.id] %}
+                        <p><span class="{{ loop.index == 1 ? 'text-primary' : 'text-secondary' }}">{{ post.createdAt|date('Y-m-d H:i:s') }}</span> - {{ post.title }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

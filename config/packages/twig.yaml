@@ -1,5 +1,7 @@
 twig:
-    default_path: '%kernel.project_dir%/templates'
+    paths: ['%kernel.project_dir%/src/UI/Http/Web/templates/twig']
+    globals:
+        kernel_default_locale: '%kernel.default_locale%'
 
 when@test:
     twig:
