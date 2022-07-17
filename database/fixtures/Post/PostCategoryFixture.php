@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\_data\Fixtures\Post;
+namespace Fixtures\Post;
 
 use App\Infrastructure\Domain\Post\Proxy\Symfony\PostCategoryProxy;
 use App\Infrastructure\Domain\Post\Proxy\Symfony\PostProxy;
