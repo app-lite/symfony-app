@@ -22,7 +22,7 @@ class PostController extends AbstractController
         $postCategoryList = $postCategoryFetcher->getList();
         $postListGroupByCategoryId = $postFetcher->getByLimitGroupByCategoryId(3);
 
-        $postCategoryList = array_merge(array_flip(array_keys($postListGroupByCategoryId)), $postCategoryList);
+        $postCategoryList = array_replace($postListGroupByCategoryId, $postCategoryList);
 
         $postCount = $postFetcher->count();
 
