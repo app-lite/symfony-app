@@ -52,6 +52,7 @@ class SymfonyPostCategoryRepository implements PostCategoryRepositoryContract
     public function hasByTitle(string $title): bool
     {
         $qb = $this->db->createQueryBuilder();
+
         return $qb
             ->from($this->table)
             ->select(self::FIELD_LIST)
@@ -104,6 +105,7 @@ class SymfonyPostCategoryRepository implements PostCategoryRepositoryContract
     public function hasById(string $id): bool
     {
         $qb = $this->db->createQueryBuilder();
+
         return $qb
                 ->from($this->table)
                 ->select('COUNT(id)')
@@ -119,7 +121,7 @@ class SymfonyPostCategoryRepository implements PostCategoryRepositoryContract
             $prepareData['updated_at'] = new \DateTimeImmutable();
             $prepareData['deleted_at'] = null;
             try {
-                if ($this->db->update($this->table, $prepareData, ['id' => $prepareData['id']]) === 0) {
+                if (0 === $this->db->update($this->table, $prepareData, ['id' => $prepareData['id']])) {
                     throw new PostCategorySaveException();
                 }
             } catch (\Throwable $e) {
@@ -151,6 +153,7 @@ class SymfonyPostCategoryRepository implements PostCategoryRepositoryContract
             /** @var PostCategory $result */
             $result = $this->hydrator->hydrate($dbResult, PostCategory::class);
         }
+
         return $result;
     }
 }

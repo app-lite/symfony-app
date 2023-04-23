@@ -19,7 +19,7 @@ class PostCategoryControllerCest
         $I->seeInDatabase(PostCategoryEnum::DB_TABLE, ['id' => '00000000-0000-0000-0000-000000000001']);
         $I->seeInDatabase(PostEnum::DB_TABLE, ['id' => '00000000-0000-0000-0000-000000000001']);
 
-        $I->sendGet( '/post');
+        $I->sendGet('/post');
         $I->canSeeResponseCodeIsSuccessful();
         $I->canSee('Home');
         $I->canSeeResponseContains('Category 1');
@@ -49,7 +49,7 @@ class PostCategoryControllerCest
         $postCategoryId1 = $faker->uuid();
         $postCategoryTitle1 = $faker->text(64);
 
-        $I->sendPost( '/post/category/store', [
+        $I->sendPost('/post/category/store', [
             'id' => $postCategoryId1,
             'title' => $postCategoryTitle1,
             'description' => null,
@@ -69,7 +69,7 @@ class PostCategoryControllerCest
         $postCategoryId1 = $faker->uuid();
         $postCategoryTitle1 = null;
 
-        $I->sendPost( '/post/category/store', [
+        $I->sendPost('/post/category/store', [
             'id' => $postCategoryId1,
             'title' => $postCategoryTitle1,
         ]);
@@ -91,7 +91,7 @@ class PostCategoryControllerCest
         $postCategoryId1 = $faker->uuid();
         $postCategoryTitle1 = 'Category 1';
 
-        $I->sendPost( '/post/category/store', [
+        $I->sendPost('/post/category/store', [
             'id' => $postCategoryId1,
             'title' => $postCategoryTitle1,
         ]);

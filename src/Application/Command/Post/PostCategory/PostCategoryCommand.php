@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Application\Command\Post\PostCategory;
 
-use App\Domain\Shared\Constant\SharedEnum;
 use Ramsey\Uuid\Uuid;
 
 class PostCategoryCommand

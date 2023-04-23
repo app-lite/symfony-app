@@ -16,7 +16,7 @@ class PostCategoryFixture extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-        for ($i = 0; $i <= 4; $i++) {
+        for ($i = 0; $i <= 4; ++$i) {
             $postCategoryId = $faker->uuid();
             $dateTimePostCategory = new \DateTimeImmutable($faker->dateTime()->format('Y-m-d H:i:s'));
             $postCategory = new PostCategoryProxy(
@@ -29,7 +29,7 @@ class PostCategoryFixture extends Fixture
                 null,
             );
             $manager->persist($postCategory);
-            for ($k = 0; $k <= rand(1000, 5000); $k++) {
+            for ($k = 0; $k <= rand(1000, 5000); ++$k) {
                 $dateTimePost = new \DateTimeImmutable($faker->dateTime()->format('Y-m-d H:i:s'));
                 $post = new PostProxy(
                     $faker->uuid(),

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Domain\Post\Proxy\Symfony;
 
-use App\Domain\Post\Entity\Post;
-
 class PostProxy
 {
     public function __construct(

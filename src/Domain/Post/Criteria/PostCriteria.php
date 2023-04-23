@@ -22,12 +22,14 @@ class PostCriteria
     {
         $this->guardKey($key);
         $this->key = $key;
+
         return $this;
     }
 
     public function removeKey(): self
     {
         $this->key = null;
+
         return $this;
     }
 
@@ -39,12 +41,14 @@ class PostCriteria
     public function addCategoryId(string $categoryId): self
     {
         $this->categoryIdList[$categoryId] = $categoryId;
+
         return $this;
     }
 
     public function removeCategoryId(string $categoryId): self
     {
         unset($this->categoryIdList[$categoryId]);
+
         return $this;
     }
 
@@ -53,6 +57,7 @@ class PostCriteria
         foreach ($categoryIdList as $categoryId) {
             $this->categoryIdList[$categoryId] = $categoryId;
         }
+
         return $this;
     }
 
@@ -61,21 +66,17 @@ class PostCriteria
         foreach ($categoryIdList as $categoryId) {
             unset($this->categoryIdList[$categoryId]);
         }
+
         return $this;
     }
 
     public function guardOrderColumn(string $column)
     {
         if (!in_array($column, PostEnum::ORDER_FIELD_LIST)) {
-            throw new \InvalidArgumentException("Incorrect column!");
+            throw new \InvalidArgumentException('Incorrect column!');
         }
     }
 
-    /**
-     * @param string $column
-     * @param string|null $direction
-     * @return $this
-     */
     public function addOrder(string $column, ?string $direction = 'asc'): self
     {
         $this->guardOrderColumn($column);
@@ -91,12 +92,10 @@ class PostCriteria
     public function removeOrder(string $column): self
     {
         unset($this->orderList[$column]);
+
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getOrderList(): array
     {
         return $this->orderList;
@@ -105,7 +104,7 @@ class PostCriteria
     public function guardKey(string $key)
     {
         if (!in_array($key, PostEnum::KEY_LIST)) {
-            throw new \InvalidArgumentException("Incorrect key!");
+            throw new \InvalidArgumentException('Incorrect key!');
         }
     }
 

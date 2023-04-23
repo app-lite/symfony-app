@@ -48,24 +48,26 @@ class PostController extends AbstractController
         PostHandler $postHandler,
     ) {
         $errors = [];
-        if (!$this->isCsrfTokenValid('create', $request->request->get('token')) && $this->getParameter('app.env') !== 'test') {
+        if (!$this->isCsrfTokenValid('create', $request->request->get('token')) && 'test' !== $this->getParameter('app.env')) {
             $errors['token'][]['message'] = 'CSRF token missing or incorrect';
         }
 
         $data = $request->request->all();
         /** @var ConstraintViolationInterface[] $violations */
         $violations = $validation->validate($data);
-        if (count($violations) !== 0 || !empty($errors)) {
+        if (0 !== count($violations) || !empty($errors)) {
             foreach ($violations as $violation) {
                 $propertyPath = str_replace(['[', ']'], ['', ''], $violation->getPropertyPath());
                 $errors[$propertyPath][]['message'] = $violation->getMessage();
             }
             $this->addFlash('errors', $errors);
             $this->addFlash('old', $data);
+
             return $this->redirectToRoute('web.post.create');
         }
         $command = PostCommand::createFromData($data);
         $postHandler->handle($command);
+
         return $this->redirectToRoute('web.post.index');
     }
 }

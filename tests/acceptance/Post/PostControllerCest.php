@@ -8,7 +8,6 @@ use App\Domain\Post\Constant\PostCategoryEnum;
 use App\Domain\Post\Constant\PostEnum;
 use App\Tests\AcceptanceTester;
 use Faker\Factory;
-use Symfony\Component\Security\Csrf\CsrfTokenManager;
 
 class PostControllerCest
 {
@@ -25,7 +24,7 @@ class PostControllerCest
 
         $dateTime = (new \DateTimeImmutable())->format('Y-m-d H:i:s');
         $postDataList = [];
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 3; ++$i) {
             $postId = "00000000-0000-0000-0000-00000000000{$i}";
             $postDataList[$i] = [
                 'id' => $postId,
@@ -38,10 +37,10 @@ class PostControllerCest
             $I->haveInDatabase(PostEnum::DB_TABLE, $postDataList[$i]);
         }
 
-        $I->sendGet( '/post');
+        $I->sendGet('/post');
         $I->canSeeResponseCodeIsSuccessful();
         $I->canSee($postCategoryTitle1);
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 3; ++$i) {
             $postId = "00000000-0000-0000-0000-00000000000{$i}";
             $postTitle = "Post {$i}";
             $I->canSee($postTitle);
@@ -75,7 +74,7 @@ class PostControllerCest
         $postTitle1 = $faker->text(64);
         $postText1 = $faker->text();
 
-        $I->sendPost( '/post/store', [
+        $I->sendPost('/post/store', [
             'id' => $postId1,
             'category_id' => $postCategoryData1['id'],
             'title' => $postTitle1,
@@ -99,7 +98,7 @@ class PostControllerCest
         $postTitle1 = $faker->text(64);
         $postText1 = $faker->text();
 
-        $I->sendPost( '/post/store', [
+        $I->sendPost('/post/store', [
             'id' => $postId1,
             'category_id' => '00000000-0000-0000-0000-000000000000',
             'title' => $postTitle1,
@@ -120,7 +119,7 @@ class PostControllerCest
         $postTitle1 = $faker->text(64);
         $postText1 = $faker->text();
 
-        $I->sendPost( '/post/store', [
+        $I->sendPost('/post/store', [
             'id' => $postId1,
             'title' => $postTitle1,
             'text' => $postText1,
@@ -148,7 +147,7 @@ class PostControllerCest
         $postTitle1 = null;
         $postText1 = $faker->text();
 
-        $I->sendPost( '/post/store', [
+        $I->sendPost('/post/store', [
             'id' => $postId1,
             'category_id' => $id,
             'title' => $postTitle1,
@@ -178,7 +177,7 @@ class PostControllerCest
         $postTitle1 = $faker->text(64);
         $postText1 = null;
 
-        $I->sendPost( '/post/store', [
+        $I->sendPost('/post/store', [
             'id' => $postId1,
             'category_id' => $id,
             'title' => $postTitle1,

@@ -133,8 +133,7 @@ class SymfonyPostRepository implements PostRepositoryContract
                     'row_number() OVER (
                     PARTITION BY category_id ORDER BY created_at DESC
                 ) i',
-                ])})"
-            , 'posts')
+                ])})", 'posts')
             ->select(self::FIELD_LIST)
             ->where($qb->expr()->lte('i', ':limit'))
             ->setParameter('limit', $limit)
@@ -188,7 +187,7 @@ class SymfonyPostRepository implements PostRepositoryContract
 
     public function getByLimitGroupByCategoryId(int $limit): array
     {
-        if ($this->db->getParams()['driver'] === 'pdo_pgsql') {
+        if ('pdo_pgsql' === $this->db->getParams()['driver']) {
             $result = $this->getByLimitLateralGroupByCategoryId($limit);
         } else {
             $result = $this->getByLimitWindowFunctionGroupByCategoryId($limit);
@@ -200,6 +199,7 @@ class SymfonyPostRepository implements PostRepositoryContract
     public function hasById(string $id): bool
     {
         $qb = $this->db->createQueryBuilder();
+
         return $qb
                 ->from($this->table)
                 ->select('COUNT(id)')
@@ -215,7 +215,7 @@ class SymfonyPostRepository implements PostRepositoryContract
             $prepareData['updated_at'] = new \DateTimeImmutable();
             $prepareData['deleted_at'] = null;
             try {
-                if ($this->db->update($this->table, $prepareData, ['id' => $prepareData['id']]) === 0) {
+                if (0 === $this->db->update($this->table, $prepareData, ['id' => $prepareData['id']])) {
                     throw new PostSaveException();
                 }
             } catch (\Throwable $e) {
@@ -248,6 +248,7 @@ class SymfonyPostRepository implements PostRepositoryContract
             /** @var Post $result */
             $result = $this->hydrator->hydrate($dbResult, Post::class);
         }
+
         return $result;
     }
 }

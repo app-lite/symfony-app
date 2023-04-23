@@ -55,6 +55,7 @@ class PostFetcher
         $criteria = PostCriteria::create();
         $criteria->addCategoryId($categoryId);
         $criteria->addOrder(PostEnum::ORDER_FIELD_CREATED_AT, SharedOrderEnum::ORDER_DIRECTION_DESC);
+
         return $this->postRepository->getListByCriteria($criteria);
     }
 }

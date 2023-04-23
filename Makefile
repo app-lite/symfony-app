@@ -45,3 +45,15 @@ test-acceptance:
 
 test:
 	docker-compose run --rm dev-symfony-php-cli php vendor/bin/codecept run
+
+php-cs-fixer-dry-run-with-diff:
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/php-cs-fixer fix --dry-run --diff
+
+php-cs-fixer-dry-run:
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/php-cs-fixer fix --dry-run
+
+php-cs-fixer-with-diff:
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/php-cs-fixer fix --diff
+
+php-cs-fixer:
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/php-cs-fixer fix
