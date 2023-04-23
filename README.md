@@ -1,8 +1,8 @@
 # Symfony 6 - DDD Example
 
-An example for DDD, CQS, Application-Side Joins using Symfony 6 as a framework, Codeception and running with PHP 8.1.
+An example for DDD, CQS, Application-Side Joins using Symfony 6 as a framework, Codeception and running with PHP 8.2.
 
-The application has a selection option through LATERALE (PostgreSQL) and an option through a window function, the last "n" posts sorted by the time of the last, in each category in descending order.
+The application has a selection option through LATERAL (PostgreSQL) and an option through a window function, the last "n" posts sorted by the time of the last, in each category in descending order.
 
 Build and start the app:  
 `make init`
