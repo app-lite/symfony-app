@@ -12,13 +12,11 @@ interface PostRepositoryContract
     public function getById(string $id): Post;
 
     /**
-     * @param int $limit
      * @return Post[][]
      */
     public function getByLimitGroupByCategoryId(int $limit): array;
 
     /**
-     * @param PostCriteria $criteria
      * @return Post[]
      */
     public function getListByCriteria(PostCriteria $criteria);
@@ -27,6 +25,7 @@ interface PostRepositoryContract
 
     /**
      * @param string[] $idList
+     *
      * @return Post[]
      */
     public function getListByIdList(array $idList): array;

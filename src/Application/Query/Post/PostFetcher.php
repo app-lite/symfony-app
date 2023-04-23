@@ -22,7 +22,6 @@ class PostFetcher
     }
 
     /**
-     * @param int $limit
      * @return Post[][]
      */
     public function getByLimitGroupByCategoryId(int $limit): array
@@ -37,6 +36,7 @@ class PostFetcher
 
     /**
      * @param string[] $idList
+     *
      * @return Post[]
      */
     public function getListByIdList(array $idList): array

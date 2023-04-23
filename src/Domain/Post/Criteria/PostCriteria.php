@@ -59,6 +59,7 @@ class PostCriteria
 
     /**
      * @param string[] $categoryIdList
+     *
      * @return $this
      */
     public function addCategoryIdList(array $categoryIdList): self
@@ -72,6 +73,7 @@ class PostCriteria
 
     /**
      * @param string[] $categoryIdList
+     *
      * @return $this
      */
     public function removeCategoryIdList(array $categoryIdList): self

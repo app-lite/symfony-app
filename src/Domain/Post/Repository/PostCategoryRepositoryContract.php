@@ -18,6 +18,7 @@ interface PostCategoryRepositoryContract
 
     /**
      * @param string[] $idList
+     *
      * @return PostCategory[]
      */
     public function getListByIdList(array $idList): array;

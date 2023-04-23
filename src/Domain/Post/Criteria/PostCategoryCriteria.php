@@ -53,6 +53,7 @@ class PostCategoryCriteria
 
     /**
      * @param string[] $statusList
+     *
      * @return $this
      */
     public function addStatusList(array $statusList): self
@@ -74,6 +75,7 @@ class PostCategoryCriteria
 
     /**
      * @param string[] $statusList
+     *
      * @return $this
      */
     public function removeStatusList(array $statusList): self

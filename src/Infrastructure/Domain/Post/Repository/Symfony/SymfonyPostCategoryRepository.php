@@ -142,7 +142,6 @@ class SymfonyPostCategoryRepository implements PostCategoryRepositoryContract
     }
 
     /**
-     * @param PostCategory $postCategory
      * @return string[]
      */
     private function extract(PostCategory $postCategory): array
@@ -152,7 +151,6 @@ class SymfonyPostCategoryRepository implements PostCategoryRepositoryContract
 
     /**
      * @param string[] $dbResult
-     * @return PostCategory|null
      */
     private function hydrateResult(array $dbResult): ?PostCategory
     {

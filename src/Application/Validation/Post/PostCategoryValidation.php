@@ -8,7 +8,6 @@ interface PostCategoryValidation
 {
     /**
      * @param string[] $data
-     * @return mixed
      */
     public function validate(array $data): mixed;
 }

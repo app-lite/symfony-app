@@ -86,7 +86,6 @@ class SymfonyPostRepository implements PostRepositoryContract
     }
 
     /**
-     * @param int $limit
      * @return Post[][]
      */
     private function getByLimitLateralGroupByCategoryId(int $limit): array
@@ -123,7 +122,6 @@ class SymfonyPostRepository implements PostRepositoryContract
     }
 
     /**
-     * @param int $limit
      * @return Post[][]
      */
     public function getByLimitWindowFunctionGroupByCategoryId(int $limit): array
@@ -194,7 +192,6 @@ class SymfonyPostRepository implements PostRepositoryContract
     }
 
     /**
-     * @param int $limit
      * @return Post[][]
      */
     public function getByLimitGroupByCategoryId(int $limit): array
@@ -248,7 +245,6 @@ class SymfonyPostRepository implements PostRepositoryContract
     }
 
     /**
-     * @param Post $post
      * @return string[]
      */
     private function extract(Post $post): array
@@ -258,7 +254,7 @@ class SymfonyPostRepository implements PostRepositoryContract
 
     /**
      * @param string[] $dbResult
-     * @return Post|null
+     *
      * @throws \Exception
      */
     private function hydrateResult(array $dbResult): ?Post
