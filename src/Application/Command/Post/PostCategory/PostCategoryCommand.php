@@ -15,6 +15,10 @@ class PostCategoryCommand
     ) {
     }
 
+    /**
+     * @param string[] $data
+     * @return self
+     */
     public static function createFromData(array $data): self
     {
         return new self(

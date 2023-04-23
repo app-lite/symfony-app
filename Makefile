@@ -63,3 +63,6 @@ deptrac-layers:
 
 deptrac-modules:
 	docker-compose run --rm dev-symfony-php-cli php vendor/bin/deptrac analyse --config-file=deptrac-modules.yaml
+
+phpstan:
+	docker-docker-compose run --rm dev-symfony-php-cli php -d memory_limit=-1 vendor/bin/phpstan analyse src tests

@@ -12,7 +12,7 @@ use Codeception\Test\Unit;
 
 class PostTest extends Unit
 {
-    public function testNewPost()
+    public function testNewPost(): void
     {
         $dataDir = codecept_data_dir();
         $dataPostCategory1 = (require "{$dataDir}Post/post_category_list.php")['post_category_1'];

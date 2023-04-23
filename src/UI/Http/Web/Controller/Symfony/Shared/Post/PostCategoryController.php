@@ -8,12 +8,14 @@ use App\Application\Command\Post\PostCategory\PostCategoryCommand;
 use App\Application\Command\Post\PostCategory\PostCategoryHandler;
 use App\Application\Validation\Post\PostCategoryValidation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 
 class PostCategoryController extends AbstractController
 {
-    public function create()
+    public function create(): Response
     {
         return $this->render('views/shared/post/category/create.html.twig');
     }
@@ -22,7 +24,7 @@ class PostCategoryController extends AbstractController
         Request $request,
         PostCategoryValidation $validation,
         PostCategoryHandler $postCategoryHandler,
-    ) {
+    ): RedirectResponse {
         $errors = [];
         if (!$this->isCsrfTokenValid('create', $request->request->get('token')) && 'test' !== $this->getParameter('app.env')) {
             $errors['token'][]['message'] = 'CSRF token missing or incorrect';

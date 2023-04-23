@@ -64,7 +64,7 @@ class SymfonyPostRepository implements PostRepositoryContract
 
         $this->prepareQueryByCriteria($query, $criteria);
 
-        return array_map(function (\stdClass $dbResult) {
+        return array_map(function (array $dbResult) {
             return $this->hydrateResult($dbResult);
         }, $query->fetchAllAssociative());
     }
@@ -85,6 +85,10 @@ class SymfonyPostRepository implements PostRepositoryContract
         return $query;
     }
 
+    /**
+     * @param int $limit
+     * @return Post[][]
+     */
     private function getByLimitLateralGroupByCategoryId(int $limit): array
     {
         $qbSub = $this->db->createQueryBuilder();
@@ -118,6 +122,10 @@ class SymfonyPostRepository implements PostRepositoryContract
         return $result;
     }
 
+    /**
+     * @param int $limit
+     * @return Post[][]
+     */
     public function getByLimitWindowFunctionGroupByCategoryId(int $limit): array
     {
         $qb = $this->db->createQueryBuilder();
@@ -185,6 +193,10 @@ class SymfonyPostRepository implements PostRepositoryContract
         }, array_column($dbResult, null, 'id'));
     }
 
+    /**
+     * @param int $limit
+     * @return Post[][]
+     */
     public function getByLimitGroupByCategoryId(int $limit): array
     {
         if ('pdo_pgsql' === $this->db->getParams()['driver']) {
@@ -235,11 +247,20 @@ class SymfonyPostRepository implements PostRepositoryContract
         }
     }
 
+    /**
+     * @param Post $post
+     * @return string[]
+     */
     private function extract(Post $post): array
     {
         return $this->hydrator->extract($post);
     }
 
+    /**
+     * @param string[] $dbResult
+     * @return Post|null
+     * @throws \Exception
+     */
     private function hydrateResult(array $dbResult): ?Post
     {
         $result = null;

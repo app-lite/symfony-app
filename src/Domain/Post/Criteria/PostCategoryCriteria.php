@@ -10,7 +10,9 @@ use App\Domain\Shared\Constant\SharedOrderEnum;
 class PostCategoryCriteria
 {
     private ?string $key = null;
+    /** @var string[] */
     private array $orderList = [];
+    /** @var string[] */
     private array $statusList = [];
 
     public function getKey(): ?string
@@ -33,6 +35,9 @@ class PostCategoryCriteria
         return $this;
     }
 
+    /**
+     * @return string[]
+     */
     public function getStatusList(): array
     {
         return $this->statusList;
@@ -46,6 +51,10 @@ class PostCategoryCriteria
         return $this;
     }
 
+    /**
+     * @param string[] $statusList
+     * @return $this
+     */
     public function addStatusList(array $statusList): self
     {
         foreach ($statusList as $status) {
@@ -63,6 +72,10 @@ class PostCategoryCriteria
         return $this;
     }
 
+    /**
+     * @param string[] $statusList
+     * @return $this
+     */
     public function removeStatusList(array $statusList): self
     {
         foreach ($statusList as $status) {
@@ -79,7 +92,7 @@ class PostCategoryCriteria
         }
     }
 
-    public function guardOrderColumn(string $column)
+    public function guardOrderColumn(string $column): void
     {
         if (!in_array($column, PostCategoryEnum::ORDER_FIELD_LIST)) {
             throw new \InvalidArgumentException('Incorrect column!');
@@ -105,12 +118,15 @@ class PostCategoryCriteria
         return $this;
     }
 
+    /**
+     * @return string[]
+     */
     public function getOrderList(): array
     {
         return $this->orderList;
     }
 
-    public function guardKey(string $key)
+    public function guardKey(string $key): void
     {
         if (!in_array($key, PostCategoryEnum::KEY_LIST)) {
             throw new \InvalidArgumentException('Incorrect key!');

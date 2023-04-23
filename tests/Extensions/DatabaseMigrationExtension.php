@@ -10,11 +10,14 @@ use Codeception\Module\Cli;
 
 class DatabaseMigrationExtension extends Extension
 {
+    /**
+     * @var array|string[]
+     */
     public static array $events = [
         Events::SUITE_BEFORE => 'beforeSuite',
     ];
 
-    public function beforeSuite()
+    public function beforeSuite(): void
     {
         try {
             /** @var Cli $cli */

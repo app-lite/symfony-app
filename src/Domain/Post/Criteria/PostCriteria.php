@@ -10,7 +10,9 @@ use App\Domain\Shared\Constant\SharedOrderEnum;
 class PostCriteria
 {
     private ?string $key = null;
+    /** @var string[] */
     private array $orderList = [];
+    /** @var string[] */
     private array $categoryIdList = [];
 
     public function getKey(): ?string
@@ -33,6 +35,9 @@ class PostCriteria
         return $this;
     }
 
+    /**
+     * @return string[]
+     */
     public function getCategoryIdList(): array
     {
         return $this->categoryIdList;
@@ -52,6 +57,10 @@ class PostCriteria
         return $this;
     }
 
+    /**
+     * @param string[] $categoryIdList
+     * @return $this
+     */
     public function addCategoryIdList(array $categoryIdList): self
     {
         foreach ($categoryIdList as $categoryId) {
@@ -61,6 +70,10 @@ class PostCriteria
         return $this;
     }
 
+    /**
+     * @param string[] $categoryIdList
+     * @return $this
+     */
     public function removeCategoryIdList(array $categoryIdList): self
     {
         foreach ($categoryIdList as $categoryId) {
@@ -70,7 +83,7 @@ class PostCriteria
         return $this;
     }
 
-    public function guardOrderColumn(string $column)
+    public function guardOrderColumn(string $column): void
     {
         if (!in_array($column, PostEnum::ORDER_FIELD_LIST)) {
             throw new \InvalidArgumentException('Incorrect column!');
@@ -96,12 +109,15 @@ class PostCriteria
         return $this;
     }
 
+    /**
+     * @return string[]
+     */
     public function getOrderList(): array
     {
         return $this->orderList;
     }
 
-    public function guardKey(string $key)
+    public function guardKey(string $key): void
     {
         if (!in_array($key, PostEnum::KEY_LIST)) {
             throw new \InvalidArgumentException('Incorrect key!');

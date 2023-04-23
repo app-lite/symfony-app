@@ -11,7 +11,7 @@ use Faker\Factory;
 
 class PostCategoryControllerCest
 {
-    public function testFetch(AcceptanceTester $I)
+    public function testFetch(AcceptanceTester $I): void
     {
         $I->wantTo('Test fetch category and post');
         $I->havePostCategoryAndPostInDatabase();
@@ -25,7 +25,7 @@ class PostCategoryControllerCest
         $I->canSeeResponseContains('Category 1');
     }
 
-//    public function testPostCategory()
+//    public function testPostCategory(): void
 //    {
 //        $a = 0;
 //        $postCategoryDataList = [];
@@ -42,7 +42,7 @@ class PostCategoryControllerCest
 //        }
 //    }
 
-    public function testCreatePostCategory(AcceptanceTester $I)
+    public function testCreatePostCategory(AcceptanceTester $I): void
     {
         $I->wantTo('Test created post category');
         $faker = Factory::create();
@@ -63,7 +63,7 @@ class PostCategoryControllerCest
         ]);
     }
 
-    public function testCreatePostCategoryWithoutTitle(AcceptanceTester $I)
+    public function testCreatePostCategoryWithoutTitle(AcceptanceTester $I): void
     {
         $faker = Factory::create();
         $postCategoryId1 = $faker->uuid();
@@ -83,7 +83,7 @@ class PostCategoryControllerCest
         ]);
     }
 
-    public function testCreatePostCategoryExistsTitle(AcceptanceTester $I)
+    public function testCreatePostCategoryExistsTitle(AcceptanceTester $I): void
     {
         $I->havePostCategoryInDatabase();
 

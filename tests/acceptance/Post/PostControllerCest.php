@@ -11,7 +11,7 @@ use Faker\Factory;
 
 class PostControllerCest
 {
-    public function testFetchPost(AcceptanceTester $I)
+    public function testFetchPost(AcceptanceTester $I): void
     {
         $I->wantTo('Test fetch post');
         $I->havePostCategoryInDatabase();
@@ -52,7 +52,7 @@ class PostControllerCest
         }
     }
 
-    public function testCreatePost(AcceptanceTester $I)
+    public function testCreatePost(AcceptanceTester $I): void
     {
         $I->wantTo('Test created post');
 
@@ -91,7 +91,7 @@ class PostControllerCest
         ]);
     }
 
-    public function testCreatePostWithSelectedCategoryIdIsInvalid(AcceptanceTester $I)
+    public function testCreatePostWithSelectedCategoryIdIsInvalid(AcceptanceTester $I): void
     {
         $faker = Factory::create();
         $postId1 = $faker->uuid();
@@ -112,7 +112,7 @@ class PostControllerCest
         ]);
     }
 
-    public function testCreatePostWithoutCategoryId(AcceptanceTester $I)
+    public function testCreatePostWithoutCategoryId(AcceptanceTester $I): void
     {
         $faker = Factory::create();
         $postId1 = $faker->uuid();
@@ -132,7 +132,7 @@ class PostControllerCest
         ]);
     }
 
-    public function testCreatePostWithoutTitle(AcceptanceTester $I)
+    public function testCreatePostWithoutTitle(AcceptanceTester $I): void
     {
         $I->havePostCategoryInDatabase();
 
@@ -162,7 +162,7 @@ class PostControllerCest
         ]);
     }
 
-    public function testCreatePostWithoutText(AcceptanceTester $I)
+    public function testCreatePostWithoutText(AcceptanceTester $I): void
     {
         $I->havePostCategoryInDatabase();
 

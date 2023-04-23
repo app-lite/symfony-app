@@ -10,7 +10,9 @@ use App\Application\Query\Post\PostCategoryFetcher;
 use App\Application\Query\Post\PostFetcher;
 use App\Application\Validation\Post\PostValidation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 
 class PostController extends AbstractController
@@ -18,13 +20,15 @@ class PostController extends AbstractController
     public function index(
         PostCategoryFetcher $postCategoryFetcher,
         PostFetcher $postFetcher,
-    ) {
+    ): Response {
         $postCategoryList = $postCategoryFetcher->getList();
         $postListGroupByCategoryId = $postFetcher->getByLimitGroupByCategoryId(3);
 
         $postCategoryList = array_replace($postListGroupByCategoryId, $postCategoryList);
 
         $postCount = $postFetcher->count();
+
+        $postList = $postFetcher->getListByCategoryId('88090a5c-0824-3d43-b9b7-0c85a0d24dd5');
 
         return $this->render('views/shared/post/post/index.html.twig',
             compact(
@@ -35,7 +39,7 @@ class PostController extends AbstractController
         );
     }
 
-    public function create(PostCategoryFetcher $postCategoryFetcher)
+    public function create(PostCategoryFetcher $postCategoryFetcher): Response
     {
         $postCategoryList = $postCategoryFetcher->getList();
 
@@ -46,7 +50,7 @@ class PostController extends AbstractController
         Request $request,
         PostValidation $validation,
         PostHandler $postHandler,
-    ) {
+    ): RedirectResponse {
         $errors = [];
         if (!$this->isCsrfTokenValid('create', $request->request->get('token')) && 'test' !== $this->getParameter('app.env')) {
             $errors['token'][]['message'] = 'CSRF token missing or incorrect';

@@ -13,17 +13,17 @@ class SymfonyTransaction implements TransactionContract
     {
     }
 
-    public function startTransaction()
+    public function startTransaction(): void
     {
         $this->db->beginTransaction();
     }
 
-    public function commit()
+    public function commit(): void
     {
         $this->db->commit();
     }
 
-    public function rollback()
+    public function rollback(): void
     {
         $this->db->rollBack();
     }

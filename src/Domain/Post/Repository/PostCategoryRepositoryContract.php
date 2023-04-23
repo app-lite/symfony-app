@@ -16,8 +16,15 @@ interface PostCategoryRepositoryContract
 
     public function hasByTitle(string $title): bool;
 
+    /**
+     * @param string[] $idList
+     * @return PostCategory[]
+     */
     public function getListByIdList(array $idList): array;
 
+    /**
+     * @return PostCategory[]
+     */
     public function getList(): array;
 
     public function save(PostCategory $postCategory): void;
