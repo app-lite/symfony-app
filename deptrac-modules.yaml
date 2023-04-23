@@ -1,0 +1,15 @@
+parameters:
+  paths:
+    - ./src
+  layers:
+    - name: Shared
+      collectors:
+        - type: directory
+          regex: /src/Domain/Shared/.*
+    - name: Post
+      collectors:
+        - type: directory
+          regex: /src/Domain/Post/.*
+  ruleset:
+    Post:
+      - Shared

@@ -57,3 +57,9 @@ php-cs-fixer-with-diff:
 
 php-cs-fixer:
 	docker-compose run --rm dev-symfony-php-cli php vendor/bin/php-cs-fixer fix
+
+deptrac-layers:
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/deptrac analyse --config-file=deptrac-layers.yaml
+
+deptrac-modules:
+	docker-compose run --rm dev-symfony-php-cli php vendor/bin/deptrac analyse --config-file=deptrac-modules.yaml
