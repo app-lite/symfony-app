@@ -11,6 +11,7 @@ use App\Domain\Post\Exception\Post\Post\PostNotFoundException;
 use App\Domain\Post\Exception\Post\Post\PostSaveException;
 use App\Domain\Post\Repository\PostRepositoryContract;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Query\QueryBuilder;
 use samdark\hydrator\Hydrator;
 
@@ -196,7 +197,7 @@ class SymfonyPostRepository implements PostRepositoryContract
      */
     public function getByLimitGroupByCategoryId(int $limit): array
     {
-        if ('pdo_pgsql' === $this->db->getParams()['driver']) {
+        if ($this->db->getDriver()->getDatabasePlatform() instanceof PostgreSQLPlatform) {
             $result = $this->getByLimitLateralGroupByCategoryId($limit);
         } else {
             $result = $this->getByLimitWindowFunctionGroupByCategoryId($limit);
